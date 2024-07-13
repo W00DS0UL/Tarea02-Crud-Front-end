@@ -1,0 +1,43 @@
+<div class="table-container table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Price</th>
+        <th scope="col">Stock Quantity</th>
+        <th scope="col">Category</th>
+        <th scope="col" *ngIf="isSuperAdmin">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of productList;">
+        <th scope="row">{{ product.id }}</th>
+        <td>{{ product.name }}</td>
+        <td>{{ product.description }}</td>
+        <td>{{ product.price }}</td>
+        <td>{{ product.stockQuantity }}</td>
+        <td>{{ product.category.id }}</td>
+        <td *ngIf="isSuperAdmin">
+          <div class="d-flex justify-content-evenly align-items-center">
+            <button type="button" (click)="showDetail(product, formModal)" class="btn btn-secondary">
+              <i class="fa-solid fa-eye white"></i> View
+            </button>
+            <button type="button" (click)="deleteProduct(product)" class="btn btn-danger">
+              <i class="fa-solid fa-trash white"></i> Delete
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<app-modal size="lg" #formModal>
+  <app-product-form
+    [product]="currentProduct"
+    [action]="'edit'"
+    [title]="'Update Product'"
+  ></app-product-form>
+</app-modal>

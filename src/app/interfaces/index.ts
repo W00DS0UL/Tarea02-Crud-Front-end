@@ -39,3 +39,18 @@ export enum IRole {
   user = "ROLE_USER",
   superAdmin = 'ROLE_SUPER_ADMIN'
 }
+
+export interface ICategory {
+  id?: number;
+  name: string;
+  description: string;
+}
+
+export interface IProduct {
+  id?: number; // Opcional si tu API devuelve el ID
+  name: string;
+  description: string;
+  price: number;
+  stockQuantity: number;
+  category: { id: number };
+}
